@@ -848,10 +848,8 @@ mode_t get_mode(headers_t& meta, const char* path, bool checkdir, bool forcedir)
               }else{
                 if(complement_stat){
                   // If complement lack stat mode, when the object has '/' character at end of name
-                  // and content type is text/plain and the object's size is 0 or 1, it should be
-                  // directory.
-                  off_t size = get_size(meta);
-                  if(strConType == "text/plain" && (0 == size || 1 == size)){
+                  // and content type is text/plain it should be directory.
+                  if(strConType == "text/plain"){
                     mode |= S_IFDIR;
                   }else{
                     mode |= S_IFREG;
